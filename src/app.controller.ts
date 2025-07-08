@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
+import { EmojiValidationPipe } from './common/emoji-validation/emoji-validation.pipe';
 
 @Controller()
 export class AppController {
@@ -10,7 +11,7 @@ export class AppController {
     return this.appService.getHello();
   }
   @Get("emoji")
-  getEmoji(): string {
-    return this.appService.getEmoji();
+  getEmoji(@Query(`index`, EmojiValidationPipe) index?: number): string {
+    return this.appService.getEmoji(index);
   }
 }

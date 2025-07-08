@@ -6,15 +6,17 @@ export class AppService {
     return 'Hello World!';
   }
 
-  getEmoji(): string {
-    const emoji = this.generateRandomEmoji();
-    return emoji;
+  getEmoji(index?: number): string {
+    const emoji = this.getEmojis();
+    console.log(" from app service index", index);
+    const emojiIndex = index || this.generateRandomIndex();
+    return emoji[emojiIndex];
   }
-
-  generateRandomEmoji(): string {
-    const emojis = ['😀', '😂', '😍', '🤔', '😎', '🥳', '😢', '😡', ' 👍', '👎'];
-    const randomIndex = Math.floor(Math.random() * emojis.length);
-    return emojis[randomIndex];
+  generateRandomIndex(): number {
+    return Math.floor(Math.random() * 10);
+  }
+  getEmojis() {
+    return ['😀', '😂', '😍', '🤔', '😎', '🥳', '😢', '😡', ' 👍', '👎'];
   }
 
 }
