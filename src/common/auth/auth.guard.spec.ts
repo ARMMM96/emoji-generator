@@ -11,7 +11,7 @@ describe('AuthGuard', () => {
     const context = createMock<ExecutionContext>({
       switchToHttp: () => ({
         getRequest: () => ({
-          header: {
+          headers: {
             "x-api-key": "SECRET_SAUCE",
 
           },
@@ -27,8 +27,6 @@ describe('AuthGuard', () => {
     const context = createMock<ExecutionContext>({
       switchToHttp: () => ({
         getRequest: () => ({
-
-          header: () => "INVALID_KEY",
           headers: { 'x-api-key': 'INVALID_KEY' },
         }),
       }),
@@ -41,8 +39,7 @@ describe('AuthGuard', () => {
     const context = createMock<ExecutionContext>({
       switchToHttp: () => ({
         getRequest: () => ({
-          header: () => undefined,
-          headers: {},
+          headers: () => undefined,
         }),
       }),
     });

@@ -8,7 +8,7 @@ export class AuthGuard implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
     console.log('AuthGuard: Checking access...');
     const request = context.switchToHttp().getRequest();
-    const apiKey = request.header['x-api-key'];
+    const apiKey = request.headers['x-api-key'];
     console.log(`API Key: ${apiKey}`);
     if (!apiKey || apiKey !== "SECRET_SAUCE") {
       console.error('AuthGuard: Invalid or missing API key');
