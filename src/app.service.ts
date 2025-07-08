@@ -8,7 +8,6 @@ export class AppService {
 
   getEmoji(index?: number): string {
     const emoji = this.getEmojis();
-    console.log(" from app service index", index);
     const emojiIndex = index || this.generateRandomIndex();
     return emoji[emojiIndex];
   }
