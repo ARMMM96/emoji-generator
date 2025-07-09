@@ -1,8 +1,11 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
+import { LoggerService } from '../../logger.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  constructor(private readonly logger: LoggerService) { }
+
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
@@ -15,7 +18,7 @@ export class AuthGuard implements CanActivate {
       return false;
 
     }
-    console.log('AuthGuard: Access granted');
+    this.logger.info('Guard: Passed authrization');
     return true;
   }
 }
